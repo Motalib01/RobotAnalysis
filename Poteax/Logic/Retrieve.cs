@@ -45,22 +45,41 @@ namespace Poteax.Logic
                             // Get load case
                             IRobotCase cas = casCol.Get(j);
 
-                            // Get force value at the midpoint of the bar (0.5)
-                            IRobotBarForceData data = forceServ.Value(barNum, cas.Number, 0.5);
+                            // Get force value at the start node of the bar (0.0)
+                            IRobotBarForceData startNodeData = forceServ.Value(barNum, cas.Number, 0.0);
+
+                            // Get force value at the end node of the bar (1.0)
+                            IRobotBarForceData endNodeData = forceServ.Value(barNum, cas.Number, 1.0);
 
                             // Create and add a Poteux object to the list
-                            Poteux poteuxData = new Poteux
+                            Poteux startNodePoteuxData = new Poteux
                             {
                                 BarNumber = barNum,
                                 LoadCaseNumber = cas.Number,
-                                FX = data.FX,
-                                FY = data.FY,
-                                FZ = data.FZ,
-                                MX = data.MX,
-                                MY = data.MY,
-                                MZ = data.MZ
+                                FX = startNodeData.FX,
+                                FY = startNodeData.FY,
+                                FZ = startNodeData.FZ,
+                                MX = startNodeData.MX,
+                                MY = startNodeData.MY,
+                                MZ = startNodeData.MZ,
+                                Position = "Start Node"
                             };
-                            BarsData.Add(poteuxData);
+                            BarsData.Add(startNodePoteuxData);
+
+                            // Create and add a Poteux object to the list for end node
+                            Poteux endNodePoteuxData = new Poteux
+                            {
+                                BarNumber = barNum,
+                                LoadCaseNumber = cas.Number,
+                                FX = endNodeData.FX,
+                                FY = endNodeData.FY,
+                                FZ = endNodeData.FZ,
+                                MX = endNodeData.MX,
+                                MY = endNodeData.MY,
+                                MZ = endNodeData.MZ,
+                                Position = "End Node"
+                            };
+                            BarsData.Add(endNodePoteuxData);
                         }
                     }
                 }
