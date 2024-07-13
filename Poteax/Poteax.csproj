@@ -52,6 +52,7 @@
     <Compile Include="Forms\Importe.Designer.cs">
       <DependentUpon>Importe.cs</DependentUpon>
     </Compile>
+    <Compile Include="Logic\Resultats.cs" />
     <Compile Include="Logic\Retrieve.cs" />
     <Compile Include="Models\Poteux.cs" />
     <Compile Include="Program.cs" />

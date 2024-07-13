@@ -31,6 +31,7 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.ImporterBtn = new System.Windows.Forms.ToolStripMenuItem();
             this.dataGridViewPoteux = new System.Windows.Forms.DataGridView();
+            this.ResultatsBtn = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPoteux)).BeginInit();
             this.SuspendLayout();
@@ -40,7 +41,8 @@
             this.menuStrip1.AutoSize = false;
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ImporterBtn});
+            this.ImporterBtn,
+            this.ResultatsBtn});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(990, 43);
@@ -67,6 +69,14 @@
             this.dataGridViewPoteux.Size = new System.Drawing.Size(990, 555);
             this.dataGridViewPoteux.TabIndex = 1;
             // 
+            // ResultatsBtn
+            // 
+            this.ResultatsBtn.Name = "ResultatsBtn";
+            this.ResultatsBtn.Size = new System.Drawing.Size(82, 39);
+            this.ResultatsBtn.Text = "Resultats";
+            this.ResultatsBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.ResultatsBtn.Click += new System.EventHandler(this.ResultatsBtn_Click);
+            // 
             // Importe
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -89,5 +99,6 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem ImporterBtn;
         private System.Windows.Forms.DataGridView dataGridViewPoteux;
+        private System.Windows.Forms.ToolStripMenuItem ResultatsBtn;
     }
 }
