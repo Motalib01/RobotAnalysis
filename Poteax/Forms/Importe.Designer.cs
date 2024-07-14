@@ -30,8 +30,8 @@
         {
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.ImporterBtn = new System.Windows.Forms.ToolStripMenuItem();
-            this.dataGridViewPoteux = new System.Windows.Forms.DataGridView();
             this.ResultatsBtn = new System.Windows.Forms.ToolStripMenuItem();
+            this.dataGridViewPoteux = new System.Windows.Forms.DataGridView();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPoteux)).BeginInit();
             this.SuspendLayout();
@@ -57,6 +57,14 @@
             this.ImporterBtn.Text = "Importer";
             this.ImporterBtn.Click += new System.EventHandler(this.ImporterBtn_Click);
             // 
+            // ResultatsBtn
+            // 
+            this.ResultatsBtn.Name = "ResultatsBtn";
+            this.ResultatsBtn.Size = new System.Drawing.Size(82, 39);
+            this.ResultatsBtn.Text = "Resultats";
+            this.ResultatsBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.ResultatsBtn.Click += new System.EventHandler(this.ResultatsBtn_Click);
+            // 
             // dataGridViewPoteux
             // 
             this.dataGridViewPoteux.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -68,14 +76,6 @@
             this.dataGridViewPoteux.RowTemplate.Height = 24;
             this.dataGridViewPoteux.Size = new System.Drawing.Size(990, 555);
             this.dataGridViewPoteux.TabIndex = 1;
-            // 
-            // ResultatsBtn
-            // 
-            this.ResultatsBtn.Name = "ResultatsBtn";
-            this.ResultatsBtn.Size = new System.Drawing.Size(82, 39);
-            this.ResultatsBtn.Text = "Resultats";
-            this.ResultatsBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
-            this.ResultatsBtn.Click += new System.EventHandler(this.ResultatsBtn_Click);
             // 
             // Importe
             // 
@@ -98,7 +98,7 @@
 
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem ImporterBtn;
-        private System.Windows.Forms.DataGridView dataGridViewPoteux;
         private System.Windows.Forms.ToolStripMenuItem ResultatsBtn;
+        private System.Windows.Forms.DataGridView dataGridViewPoteux;
     }
 }
