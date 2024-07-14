@@ -17,7 +17,7 @@ namespace Poteax
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Importe());
+            Application.Run(new Main());
         }
     }
 }

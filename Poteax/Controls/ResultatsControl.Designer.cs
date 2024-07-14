@@ -1,4 +1,4 @@
-﻿namespace Poteax.Forms
+﻿namespace Poteax.Controls
 {
     partial class ResultatsControl
     {
@@ -28,35 +28,34 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGridViewResults = new System.Windows.Forms.DataGridView();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewResults)).BeginInit();
+            this.dataGridViewResultats = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewResultats)).BeginInit();
             this.SuspendLayout();
             // 
-            // dataGridViewResults
+            // dataGridViewResultats
             // 
-            this.dataGridViewResults.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewResults.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridViewResults.Location = new System.Drawing.Point(0, 0);
-            this.dataGridViewResults.Name = "dataGridViewResults";
-            this.dataGridViewResults.RowHeadersWidth = 51;
-            this.dataGridViewResults.RowTemplate.Height = 24;
-            this.dataGridViewResults.Size = new System.Drawing.Size(655, 581);
-            this.dataGridViewResults.TabIndex = 0;
+            this.dataGridViewResultats.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewResultats.Location = new System.Drawing.Point(45, 152);
+            this.dataGridViewResultats.Name = "dataGridViewResultats";
+            this.dataGridViewResultats.RowHeadersWidth = 51;
+            this.dataGridViewResultats.RowTemplate.Height = 24;
+            this.dataGridViewResultats.Size = new System.Drawing.Size(451, 192);
+            this.dataGridViewResultats.TabIndex = 0;
             // 
             // ResultatsControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.dataGridViewResults);
+            this.Controls.Add(this.dataGridViewResultats);
             this.Name = "ResultatsControl";
-            this.Size = new System.Drawing.Size(655, 581);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewResults)).EndInit();
+            this.Size = new System.Drawing.Size(1006, 691);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewResultats)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridViewResults;
+        public System.Windows.Forms.DataGridView dataGridViewResultats;
     }
 }

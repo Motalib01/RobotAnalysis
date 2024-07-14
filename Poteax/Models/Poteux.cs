@@ -17,6 +17,7 @@ namespace Poteax.Models
         public double MX { get; set; }
         public double MY { get; set; }
         public double MZ { get; set; }
-        
+        public string Description { get; set; }
+
     }
 }
