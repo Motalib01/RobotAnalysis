@@ -1,4 +1,5 @@
 ﻿using Poteax.Logic;
+using Poteax.Models;
 using RobotOM;
 using System;
 using System.Collections.Generic;
@@ -15,28 +16,42 @@ namespace Poteax.Controls
     public partial class ImportControl : UserControl
     {
         private IRobotApplication robApp;
-        private Retrieve Retrieve = new Retrieve();
-        public ImportControl(IRobotApplication robotApplication)
+        private Retrieve retrieve;
+        public ImportControl(IRobotApplication robotApplication, DataGridView dataGridViewImportBar)
         {
             InitializeComponent();
             robApp = robotApplication;
-            LoadData();
+            this.retrieve = new Retrieve();
+            this.Load += new EventHandler(LoadData);
         }
         
-        private void LoadData()
+        private void LoadData(object sender, EventArgs e)
         {
             try
             {
                 // Call the method in Retrieve to retrieve bars data
-                Retrieve.RetrieveSelectedBarsData(robApp);
+                retrieve.RetrieveSelectedBarsData(robApp);
 
-                // Bind the retrieved data to dataGridViewPoteux
-                dataGridViewImportBar.DataSource = Retrieve.BarsData;
+                // Bind the retrieved data to dataGridViewImportBar
+                dataGridViewImportBar.DataSource = null; // Clear previous binding
+                dataGridViewImportBar.DataSource = retrieve.BarsData;
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Failed to retrieve and display bars data: " + ex.Message);
             }
+        }
+        public List<Poteux> GetData()
+        {
+            var data = new List<Poteux>();
+            foreach (DataGridViewRow row in dataGridViewImportBar.Rows)
+            {
+                if (row.DataBoundItem != null)
+                {
+                    data.Add((Poteux)row.DataBoundItem);
+                }
+            }
+            return data;
         }
     }
 }

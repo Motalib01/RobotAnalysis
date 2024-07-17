@@ -2,27 +2,20 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using DevExpress.XtraBars;
 using Poteax.Models;
 
 namespace Poteax.Logic
 {
     public class Resultats
     {
-        public static void ProcessBarsData(DataGridView dataGridViewPoteux)
+        public static List<Poteux> GetBarsData(DataGridView dataGridViewPotauex)
         {
+            List<Poteux> barsDataFromGrid = new List<Poteux>();
+
             try
             {
-                // Ensure DataGridView has rows
-                if (dataGridViewPoteux.Rows.Count == 0)
-                {
-                    MessageBox.Show("No bars data available in the grid.");
-                    return;
-                }
-
-                // Collect data from DataGridView into a list of Poteux objects
-                List<Poteux> barsDataFromGrid = new List<Poteux>();
-
-                foreach (DataGridViewRow row in dataGridViewPoteux.Rows)
+                foreach (DataGridViewRow row in dataGridViewPotauex.Rows)
                 {
                     if (row.IsNewRow) continue;
 
@@ -41,47 +34,59 @@ namespace Poteax.Logic
 
                     barsDataFromGrid.Add(poteux);
                 }
-
-                // Process data as needed
-                // Example processing:
-                var messages = new List<string>();
-
-                var loadCaseNumber3 = barsDataFromGrid.Where(L => L.LoadCaseNumber == 3);
-                var loadCaseNumberNot3 = barsDataFromGrid.Where(L => L.LoadCaseNumber != 3);
-
-                if (loadCaseNumber3.Any())
-                {
-                    var ELU = barsDataFromGrid.OrderByDescending(b => b.FX).First();
-                    messages.Add($"ELU:\n\nFX: {ELU.FX}\nMY: {ELU.MY}\nMZ: {ELU.MZ}");
-                }
-
-                if (loadCaseNumberNot3.Any())
-                {
-                    var ACC1 = barsDataFromGrid.OrderByDescending(b => b.MY).First();
-                    messages.Add($"ACC1:\n\nFX: {ACC1.FX}\nMY: {ACC1.MY}\nMZ: {ACC1.MZ}");
-                }
-
-                if (loadCaseNumberNot3.Any())
-                {
-                    var ACC2 = barsDataFromGrid.OrderByDescending(b => b.MZ).First();
-                    messages.Add($"ACC2:\n\nFX: {ACC2.FX}\nMY: {ACC2.MY}\nMZ: {ACC2.MZ}");
-                }
-
-                if (loadCaseNumberNot3.Any())
-                {
-                    var ACC3 = barsDataFromGrid.OrderByDescending(b => b.FX).Last();
-                    messages.Add($"ACC3:\n\nFX: {ACC3.FX}\nMY: {ACC3.MY}\nMZ: {ACC3.MZ}");
-                }
-
-                if (messages.Any())
-                {
-                    MessageBox.Show(string.Join("\n\n", messages));
-                }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show("Failed to process bars data: " + ex.Message);
+
+                MessageBox.Show("problem here the data");
             }
+
+            return barsDataFromGrid;
+        }
+
+        public static List<ResultData> ProcessBarsData(List<Poteux> poteuxes)
+        {
+            var results = new List<ResultData>();
+
+            var ELU = poteuxes.Where(b => b.LoadCaseNumber == 3)
+                              .OrderByDescending(b => b.FX)
+                              .FirstOrDefault();
+
+            if (ELU != null)
+                results.Add(new ResultData("ELU", ELU.FX / 1000, ELU.MY / 1000, ELU.MZ / 1000));
+
+            var ACC1 = poteuxes.Where(b => b.LoadCaseNumber != 1
+                                        && b.LoadCaseNumber != 2
+                                        && b.LoadCaseNumber != 3
+                                        && b.LoadCaseNumber != 5)
+                               .OrderBy(b => Math.Abs(b.MY))
+                               .FirstOrDefault();
+
+            if (ACC1 != null)
+                results.Add(new ResultData("ACC1", ACC1.FX / 1000, ACC1.MY / 1000, ACC1.MZ / 1000));
+
+            var ACC2 = poteuxes.Where(b => b.LoadCaseNumber != 1
+                                        && b.LoadCaseNumber != 2
+                                        && b.LoadCaseNumber != 3
+                                        && b.LoadCaseNumber != 5)
+                               .OrderBy(b => Math.Abs(b.MZ))
+                               .FirstOrDefault();
+
+            if (ACC2 != null)
+                results.Add(new ResultData("ACC2", ACC2.FX / 1000, ACC2.MY / 1000, ACC2.MZ / 1000));
+
+            var ACC3 = poteuxes.Where(b => b.LoadCaseNumber != 1
+                                        && b.LoadCaseNumber != 2
+                                        && b.LoadCaseNumber != 3
+                                        && b.LoadCaseNumber != 5)
+                               .OrderBy(b => b.FX)
+                               .LastOrDefault();
+
+            if (ACC3 != null)
+                results.Add(new ResultData("ACC3", ACC3.FX/1000, ACC3.MY / 1000, ACC3.MZ / 1000));
+
+            return results;
+
         }
     }
 }

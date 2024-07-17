@@ -9,30 +9,18 @@ namespace Poteax.Forms
     public partial class Main : Form
     {
         private IRobotApplication robApp;
-        private Retrieve Retrieve = new Retrieve();
-        private ImportControl importControl;
+        private ImportControl _importControl;
+        private ResultatsControl resultatsControl;
         private DataGridView dataGridViewImportBar;
+
+
 
         public Main()
         {
             InitializeComponent();
             InitializeRobot();
-            InitializeDataGridView();
-        }
-
-        private void InitializeDataGridView()
-        {
-            // Initialize your DataGridView here
-            dataGridViewImportBar = new DataGridView();
-            // Optionally set properties like Dock, Size, etc.
-            dataGridViewImportBar.Dock = DockStyle.Fill;
-            // Add any necessary columns
-            dataGridViewImportBar.Columns.Add("LoadCaseNumber", "Load Case Number");
-            dataGridViewImportBar.Columns.Add("FX", "FX");
-            dataGridViewImportBar.Columns.Add("MY", "MY");
-            dataGridViewImportBar.Columns.Add("MZ", "MZ");
-            // Add to MainContentPanel or another container if necessary
-            MainContentPanel.Controls.Add(dataGridViewImportBar);
+            _importControl = new ImportControl(robApp, dataGridViewImportBar);  // Pass dataGridViewImportBar to ImportControl
+            resultatsControl = new ResultatsControl(_importControl);  // Pass dataGridViewImportBar to ResultatsControl
         }
 
         private void InitializeRobot()
@@ -40,13 +28,16 @@ namespace Poteax.Forms
             try
             {
                 robApp = new RobotApplication();
-                robApp.Visible = 1;
+                
+                robApp.Interactive = 1;
+                
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Failed to initialize Robot: " + ex.Message);
             }
         }
+       
 
         private void LoadControl(Control control)
         {
@@ -58,21 +49,22 @@ namespace Poteax.Forms
 
         private void ImporteBtn_Click(object sender, EventArgs e)
         {
-            importControl = new ImportControl(robApp);
-            LoadControl(importControl);
+            _importControl = new ImportControl(robApp, dataGridViewImportBar);
+            LoadControl(_importControl);
         }
 
         private void ResultatsBtn_Click(object sender, EventArgs e)
         {
-            // Check if dataGridViewImportBar is initialized and has data
-            if (dataGridViewImportBar == null || dataGridViewImportBar.Rows.Count == 0)
-            {
-                MessageBox.Show("No data available in dataGridViewImportBar.");
-                return;
-            }
 
-            // Pass dataGridViewImportBar to ResultatsControl
-            LoadControl(new ResultatsControl(dataGridViewImportBar));
+            if (_importControl != null)
+            {
+                resultatsControl = new ResultatsControl(_importControl);
+                LoadControl(resultatsControl);
+            }
+            else
+            {
+                MessageBox.Show("Please import data first.");
+            }
         }
     }
 }

@@ -28,28 +28,28 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGridViewResultats = new System.Windows.Forms.DataGridView();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewResultats)).BeginInit();
+            this.dataGridViewRes = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewRes)).BeginInit();
             this.SuspendLayout();
             // 
-            // dataGridViewResultats
+            // dataGridViewRes
             // 
-            this.dataGridViewResultats.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewResultats.Location = new System.Drawing.Point(45, 152);
-            this.dataGridViewResultats.Name = "dataGridViewResultats";
-            this.dataGridViewResultats.RowHeadersWidth = 51;
-            this.dataGridViewResultats.RowTemplate.Height = 24;
-            this.dataGridViewResultats.Size = new System.Drawing.Size(451, 192);
-            this.dataGridViewResultats.TabIndex = 0;
+            this.dataGridViewRes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewRes.Location = new System.Drawing.Point(109, 139);
+            this.dataGridViewRes.Name = "dataGridViewRes";
+            this.dataGridViewRes.RowHeadersWidth = 51;
+            this.dataGridViewRes.RowTemplate.Height = 24;
+            this.dataGridViewRes.Size = new System.Drawing.Size(667, 264);
+            this.dataGridViewRes.TabIndex = 0;
             // 
             // ResultatsControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.dataGridViewResultats);
+            this.Controls.Add(this.dataGridViewRes);
             this.Name = "ResultatsControl";
             this.Size = new System.Drawing.Size(1006, 691);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewResultats)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewRes)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -57,5 +57,6 @@
         #endregion
 
         public System.Windows.Forms.DataGridView dataGridViewResultats;
+        private System.Windows.Forms.DataGridView dataGridViewRes;
     }
 }

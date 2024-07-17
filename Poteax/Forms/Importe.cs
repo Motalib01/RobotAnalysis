@@ -53,7 +53,8 @@ namespace Poteax.Forms
 
         private void ResultatsBtn_Click(object sender, EventArgs e)
         {
-            Resultats.ProcessBarsData(dataGridViewPoteux);
+            //Resultats.ProcessBarsData(dataGridViewPoteux, dataGridViewResultats);
+            throw new NotImplementedException();
         }
     }
 }

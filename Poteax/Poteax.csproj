@@ -85,6 +85,7 @@
     <Compile Include="Logic\Resultats.cs" />
     <Compile Include="Logic\Retrieve.cs" />
     <Compile Include="Models\Poteux.cs" />
+    <Compile Include="Models\ResultData.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Controls\ImportControl.resx">
