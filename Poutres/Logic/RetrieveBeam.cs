@@ -45,34 +45,27 @@ namespace Poteax.Logic
                             // Get load case
                             IRobotCase cas = casCol.Get(j);
 
-                            // Get force value at the start node of the bar (0.0)
-                            IRobotBarForceData startNodeData = forceServ.Value(BeamNum, cas.Number, 0.0);
+                             // Retrieve force data at various points along the beam
+                            int numPoints = 100;
+                            double increment = 1.0 / numPoints;
 
-                            // Get force value at the end node of the bar (1.0)
-                            IRobotBarForceData endNodeData = forceServ.Value(BeamNum, cas.Number, 1.0);
-
-                            List<string> positions = new List<string>();
-                            for (int p = 1; p <= 100; p++)
+                            for (double pos = 0; pos <= 1.0; pos += increment)
                             {
-                                positions.Add($"Position {p}");
-                            }
+                                IRobotBarForceData forceData = forceServ.Value(BeamNum, cas.Number, pos);
 
-                            // Create and add a Poutre object to the list
-                            foreach (string position in positions)
-                            {
                                 Poutre NodePoutreData = new Poutre
                                 {
                                     BarNumber = BeamNum,
                                     LoadCaseNumber = cas.Number,
-                                    FX = startNodeData.FX,
-                                    FY = startNodeData.FY,
-                                    FZ = startNodeData.FZ,
-                                    MX = startNodeData.MX,
-                                    MY = startNodeData.MY,
-                                    MZ = startNodeData.MZ,
-                                    Position = $"Node - {position}"
+                                    FX = forceData.FX,
+                                    FY = forceData.FY,
+                                    FZ = forceData.FZ,
+                                    MX = forceData.MX,
+                                    MY = forceData.MY,
+                                    MZ = forceData.MZ,
+                                    Position = $"Node - {pos * 100}%"
                                 };
-                                BeamData.Add(NodePoutreData); 
+                                BeamData.Add(NodePoutreData);
                             }
 
                         }
